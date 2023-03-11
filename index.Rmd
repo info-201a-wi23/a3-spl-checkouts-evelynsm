@@ -5,82 +5,79 @@ output: html_document
 
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+I'm choosing to analyze books by the author Colleen Hoover. More specifically, the books that were checked out from 2022-2023. I'm analyzing these books because I enjoyed reading books by this author, so I was curious about the types of checkout patterns these books had.   
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+```{r, echo=F, message=FALSE}
+source("summary.R")
+```
 
-These will likely be calculated using your DPLYR skills, answering questions such as:
 
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
+When I first looked at this dataset, I was curious about the total number of checkouts Colleen Hoover's books had, so I discovered there were `r total_checkouts` checkouts from 2022 to 2023. I then discovered that the most checked-out book was `r max_checkouts_title`, with `r verity_checkouts` checkouts, with the most checkouts occurring in month `r verity_max_checkoutmonth` . While the least checked-out book is `r min_checkouts_title`, which is the german version of It ends with us that only has `r least_checkout_number` checkouts. 
 
-Feel free to calculate and report values that you find relevant.
+
 
 ### The Dataset
 
-- Who collected/published the data?  
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
+- This Data was collected by The Seattle Public Library
+- The Dataset has 12 features: Title, Creator, Subjects, Publisher, Publication Year, Item Type, Usage Class, Checkout Year, Checkout Month, and Checkouts.   
+- This dataset was collected by the library's circulation system; for example, every time an item was checked out, it was added to this dataset.  
+- The dataset was collected for the library's personal use and to provide the public with transparency about c different book checkouts.    
+- An ethical question you should consider when working with this dataset is what kind of privacy was provided for the people who checked out the books?    
+
+ Since this data is vast, it did come with some limitations and problems. The first one comes up whenever you want to build your own dataset. For example, some authors had some letters in their names capitalized for some rows, so you had to take the same author's different spelling versions into account when creating your dataset to get all checkouts for that author.
+Something else you must remember when working with this dataset is the changes in checkout patterns due to covid 19 pandemic. For example, since the physical checkouts declined, you have to start working with more digital checkouts instead. 
+I decided to use datasets with books by the author colleen hoover, which for the most part, worked well but like every other dataset; it did come with some limitations and problems. The first problem I noticed is that some books have different versions. For example, the book It ends with us had different versions in other languages. So if I wanted to analyze this book, I had to be cautious that other versions of that book existed in the dataset, so it's difficult to see how many exact checkouts each book had when considering the different versions. 
 
 
-### First Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+### Bar Chart: Total Number of Checkouts For Top 3 Colleen Hoover Books
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
 
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
+``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1.R"), message = FALSE, warning = FALSE}
 ```
 
-### Second Trends Over Time Chart
+### Purpose
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+I wanted to show Colleen Hoover's top 3 most popular books, so I made a bar chart to show how many checkouts each book had. By using a bar chart to display this data, we can visually see each book's popularity order and how many checkouts they had. 
 
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+### Insights
 
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+* The most checked-out book is Verity, with 2,853 checkouts
+* The second most checkout book is It Ends with Us: A novel, with 1,988 checkouts
+* The third most checked-out book is Ugly Love: A novel, with 1,009 checkouts
+ 
 
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
+### Bar Chart: Number of Checkouts per Month for Top 3 Colleen Hoover books in 2022
 
-Here's an example of how to run an R script inside an RMarkdown file:
 
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+``````{r, echo = FALSE, code = readLines("chart2.R"), message = FALSE, warning = FALSE}
 ```
 
-### Your Choice
+### Purpose
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
+Since the first chart showed the top 3 books, I wanted to look at the number of checkouts each of these books had every month to check if the popularity of each book stayed constant over time.
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
+### Insights
 
-Here's an example of how to run an R script inside an RMarkdown file:
+* The book Verity was the most checked-out book every month 
+* The book Ugly love was always the third most checked-out book
+* There were a couple of months where the amount of checkouts decreased instead of increasing 
 
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+### Barchart: Total Checkouts Per Month in 2022
+
+
+``````{r, echo = FALSE, code = readLines("chart3.R"), message = FALSE, warning = FALSE}
 ```
 
 
+### Purpose
+
+For the third chart, I wanted to show how many total checkouts there were per month in 2022. In addition, I wanted to check if the number of checkouts increased over time for various reasons, like any sudden popularity boosts that Colleen Hoover had. I used a bar chart so you can visually see when there was an increase in book checkouts. 
+
+### Insights
+
+* Month 12 had the most amount of checkouts at around 1935 checkouts
+* Month 1 had the least amount of checkouts at around 664
+* After month 6, there started to be a significant increase in the number of checkouts
